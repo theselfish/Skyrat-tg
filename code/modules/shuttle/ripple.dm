@@ -20,6 +20,7 @@
 
 /obj/effect/abstract/ripple/Initialize(mapload, obj/docking_port/mobile/incoming_shuttle, time_left) // SKYRAT EDIT CHANGE
 	. = ..()
+	src.incoming_shuttle = incoming_shuttle // SKYRAT EDIT ADDITION
 	animate(src, alpha=255, time=time_left)
 	addtimer(CALLBACK(src, .proc/stop_animation), 8, TIMER_CLIENT_TIME)
 	addtimer(CALLBACK(src, .proc/actualize), time_left, TIMER_CLIENT_TIME) // SKYRAT EDIT ADDITION
