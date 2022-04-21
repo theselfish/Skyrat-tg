@@ -20,6 +20,9 @@ All ShuttleMove procs go here
 	if(!(. & MOVE_TURF))
 		return
 
+	shuttle_gib(shuttle) // SKYRAT EDIT ADDITION
+
+/turf/proc/shuttle_gib(obj/docking_port/mobile/shuttle) // SKYRAT EDIT ADDITION
 	var/shuttle_dir = shuttle.dir
 	for(var/i in contents)
 		var/atom/movable/thing = i
