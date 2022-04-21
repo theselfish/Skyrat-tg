@@ -409,10 +409,14 @@
 	var/can_move_docking_ports = FALSE
 	var/list/hidden_turfs = list()
 
+	// SKYRAT EDIT ADDITION
 	///Can this shuttle be called while it's in transit? (Prevents people recalling it once it's already enroute)
-	var/can_be_called_in_transit = TRUE //SKYRAT EDIT ADDITION
-
-	var/admin_forced = FALSE //SKYRAT EDIT ADDITION
+	var/can_be_called_in_transit = TRUE
+	/// Has an admin forced this shuttle to move?
+	var/admin_forced = FALSE
+	/// The shuttle projector we create with ripples and should be deleted with ripples
+	var/obj/effect/abstract/shuttle_projector/inbound_shuttle_projector
+	// SKYRAT EDIT END
 
 /obj/docking_port/mobile/register(replace = FALSE)
 	. = ..()
@@ -658,12 +662,24 @@
 	jumpToNullSpace()
 
 /obj/docking_port/mobile/proc/create_ripples(obj/docking_port/stationary/S1, animate_time)
+	// SKYRAT EDIT ADDITION
+	// Don't create ripples for transit docks
+	if(istype(S1, /obj/docking_port/stationary/transit))
+		return
+
+	if(inbound_shuttle_projector)
+		CRASH("create_ripples() called multiple times!")
+	// SKYRAT EDIT END
 	var/list/turfs = ripple_area(S1)
 	for(var/t in turfs)
-		ripples += new /obj/effect/abstract/ripple(t, animate_time)
+		ripples += new /obj/effect/abstract/ripple(t, src, animate_time) // SKYRAT EDIT CHANGE
+
+	inbound_shuttle_projector = new /obj/effect/abstract/shuttle_projector(null, src, S1, TRUE, animate_time) // SKYRAT EDIT ADDITION
+
 
 /obj/docking_port/mobile/proc/remove_ripples()
 	QDEL_LIST(ripples)
+	QDEL_NULL(inbound_shuttle_projector) // SKYRAT EDIT ADDITION
 
 /obj/docking_port/mobile/proc/ripple_area(obj/docking_port/stationary/S1)
 	var/list/L0 = return_ordered_turfs(x, y, z, dir)

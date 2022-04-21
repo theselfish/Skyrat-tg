@@ -48,11 +48,15 @@
 			rotation += (rotation % 90) //diagonal rotations not allowed, round up
 		rotation = SIMPLIFY_DEGREES(rotation)
 
-	if(!movement_direction)
-		movement_direction = turn(preferred_direction, 180)
+	movement_direction = preferred_direction // SKYRAT EDIT CHANGE
 
 	var/list/moved_atoms = list() //Everything not a turf that gets moved in the shuttle
 	var/list/areas_to_move = list() //unique assoc list of areas on turfs being moved
+
+	// SKYRAT EDIT ADDITION
+	for(var/obj/effect/abstract/ripple/ripple as anything in ripples)
+		ripple.can_gib = FALSE
+	// SKYRAT EDIT END
 
 	. = preflight_check(old_turfs, new_turfs, areas_to_move, rotation)
 	if(.)
@@ -103,6 +107,11 @@
 
 	// remove any stragglers just in case, and clear the list
 	remove_ripples()
+	// SKYRAT EDIT ADDITION
+	var/should_project = old_dock && !istype(old_dock, /obj/docking_port/stationary/transit)
+	if (should_project)
+		new /obj/effect/abstract/shuttle_projector(null, src, old_dock, FALSE)
+	// SKYRAT EDIT END
 	return DOCKING_SUCCESS
 
 /obj/docking_port/mobile/proc/preflight_check(list/old_turfs, list/new_turfs, list/areas_to_move, rotation)
