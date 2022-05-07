@@ -46,11 +46,19 @@
 	brother2.set_species(/datum/species/moth)
 
 	var/icon/brother1_icon = render_preview_outfit(/datum/outfit/job/quartermaster, brother1)
-	brother1_icon.Blend(icon('icons/effects/blood.dmi', "maskblood"), ICON_OVERLAY)
+	// SKYRAT EDIT CHANGE
+	var/icon/blood1_icon = icon('modular_skyrat/modules/better_blood/icons/blood.dmi', "maskblood")
+	blood1_icon.Blend(COLOR_BLOOD, ICON_MULTIPLY)
+	brother1_icon.Blend(blood1_icon, ICON_OVERLAY)
+	// SKYRAT EDIT END
 	brother1_icon.Shift(WEST, 8)
 
 	var/icon/brother2_icon = render_preview_outfit(/datum/outfit/job/scientist, brother2)
-	brother2_icon.Blend(icon('icons/effects/blood.dmi', "uniformblood"), ICON_OVERLAY)
+	// SKYRAT EDIT CHANGE
+	var/icon/blood2_icon = icon('modular_skyrat/modules/better_blood/icons/blood.dmi', "uniformblood")
+	blood2_icon.Blend(COLOR_BLOOD, ICON_MULTIPLY)
+	brother2_icon.Blend(blood2_icon, ICON_OVERLAY)
+	// SKYRAT EDIT END
 	brother2_icon.Shift(EAST, 8)
 
 	var/icon/final_icon = brother1_icon

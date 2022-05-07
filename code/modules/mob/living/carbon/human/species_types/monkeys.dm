@@ -60,6 +60,8 @@
 
 	payday_modifier = 1.5
 
+	use_damage_color = FALSE // SKYRAT EDIT ADDITON
+
 
 
 /datum/species/monkey/random_name(gender,unique,lastname)

@@ -97,7 +97,12 @@
 	for(var/obj/item/bodypart/iter_part as anything in bodyparts)
 		if(iter_part.dmg_overlay_type)
 			if(iter_part.brutestate)
-				damage_overlay.add_overlay("[iter_part.dmg_overlay_type]_[iter_part.body_zone]_[iter_part.brutestate]0") //we're adding icon_states of the base image as overlays
+				// SKYRAT EDIT CHANGE
+				var/image/brute_overlay = image(',odular_skyrat/modules/better_blood/icons/dam_mob.dmi', "[BP.dmg_overlay_type]_[BP.body_zone]_[BP.brutestate]0")
+				if(BP.use_damage_color)
+					brute_overlay.color = BP.damage_color
+				damage_overlay.add_overlay(brute_overlay)
+				// SKYRAT EDIT END
 			if(iter_part.burnstate)
 				damage_overlay.add_overlay("[iter_part.dmg_overlay_type]_[iter_part.body_zone]_0[iter_part.burnstate]")
 

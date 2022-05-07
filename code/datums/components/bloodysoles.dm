@@ -232,6 +232,10 @@
 	wielder = parent
 	if(!bloody_feet)
 		bloody_feet = mutable_appearance('icons/effects/blood.dmi', "shoeblood", SHOES_LAYER)
+	// SKYRAT EDIT ADDITION
+	if(HAS_BLOOD_DNA(parent_atom))
+		bloody_feet.color = get_blood_dna_color(parent_atom.return_blood_DNA())
+	// SKYRAT EDIT END
 	RegisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT, .proc/on_clean)
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/on_moved)
 	RegisterSignal(parent, COMSIG_STEP_ON_BLOOD, .proc/on_step_blood)

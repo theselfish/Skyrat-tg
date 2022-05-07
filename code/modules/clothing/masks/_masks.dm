@@ -51,7 +51,11 @@
 		if(damaged_clothes)
 			. += mutable_appearance('icons/effects/item_damage.dmi', "damagedmask")
 		if(HAS_BLOOD_DNA(src))
-			. += mutable_appearance('icons/effects/blood.dmi', "maskblood")
+			// SKYRAT EDIT CHANGE
+			var/mutable_appearance/bloody_mask = mutable_appearance('modular_skyrat/modules/better_blood/icons/blood.dmi', "maskblood")
+			bloody_mask.color = get_blood_dna_color(return_blood_DNA())
+			. += bloody_mask
+			// SKYRAT EDIT END
 
 /obj/item/clothing/mask/update_clothes_damaged_state(damaged_state = CLOTHING_DAMAGED)
 	..()

@@ -691,6 +691,13 @@
 	else
 		draw_color = null
 
+	// SKYRAT EDIT ADDITION
+	if(human_owner?.dna.blood_type?.color)
+		damage_color = human_owner.dna.blood_type.color
+	else
+		damage_color = COLOR_BLOOD
+	// SKYRAT EDIT END
+
 	if(!is_creating)
 		return
 
@@ -705,7 +712,7 @@
 			skin_tone = human_owner.skin_tone
 		else
 			skin_tone = ""
-
+		use_damage_color = owner_species.use_damage_color // SKYRAT EDIT ADDITION
 		if(((MUTCOLORS in owner_species.species_traits) || (DYNCOLORS in owner_species.species_traits)) && uses_mutcolor) //Ethereal code. Motherfuckers.
 			if(owner_species.fixed_mut_color)
 				species_color = owner_species.fixed_mut_color
@@ -763,7 +770,12 @@
 		image_dir = SOUTH
 		if(dmg_overlay_type)
 			if(brutestate)
-				. += image('icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_[brutestate]0", -DAMAGE_LAYER, image_dir)
+				// SKYRAT EDIT CHANGE
+				var/image/bruteoverlay = image('modular_skyrat/modules/better_blood/icons/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_[brutestate]0", -DAMAGE_LAYER, image_dir)
+				if(use_damage_color)
+					bruteoverlay.color = damage_color
+				. += bruteoverlay
+				// SKYRAT EDIT END
 			if(burnstate)
 				. += image('icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_0[burnstate]", -DAMAGE_LAYER, image_dir)
 

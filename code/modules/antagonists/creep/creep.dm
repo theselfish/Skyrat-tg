@@ -43,7 +43,11 @@
 	victim_dummy.update_hair()
 
 	var/icon/obsessed_icon = render_preview_outfit(preview_outfit)
-	obsessed_icon.Blend(icon('icons/effects/blood.dmi', "uniformblood"), ICON_OVERLAY)
+	// SKYRAT EDIT CHANGE
+	var/icon/blood_icon = icon('modular_skyrat/modules/better_blood/icons/blood.dmi', "uniformblood")
+	blood_icon.Blend(COLOR_BLOOD, ICON_MULTIPLY)
+	obsessed_icon.Blend(blood_icon, ICON_OVERLAY)
+	// SKYRAT EDIT END
 
 	var/icon/final_icon = finish_preview_icon(obsessed_icon)
 

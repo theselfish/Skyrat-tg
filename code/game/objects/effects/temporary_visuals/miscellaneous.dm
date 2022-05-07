@@ -1,18 +1,23 @@
 //unsorted miscellaneous temporary visuals
 /obj/effect/temp_visual/dir_setting/bloodsplatter
-	icon = 'icons/effects/blood.dmi'
+	icon = 'modular_skyrat/modules/better_blood/icons/blood.dmi' // SKYRAT EDIT CHANGE
 	duration = 5
 	randomdir = FALSE
 	layer = BELOW_MOB_LAYER
 	plane = GAME_PLANE
+	color = COLOR_BLOOD // SKYRAT EDIT ADDITION
 	var/splatter_type = "splatter"
 
-/obj/effect/temp_visual/dir_setting/bloodsplatter/Initialize(mapload, set_dir)
+/obj/effect/temp_visual/dir_setting/bloodsplatter/Initialize(mapload, set_dir, set_color) // SKYRAT EDIT CHANGE
 	if(ISDIAGONALDIR(set_dir))
 		icon_state = "[splatter_type][pick(1, 2, 6)]"
 	else
 		icon_state = "[splatter_type][pick(3, 4, 5)]"
 	. = ..()
+	// SKYRAT EDIT ADDITION
+	if(set_color)
+		color = set_color
+	// SKYRAT EDIT END
 	var/target_pixel_x = 0
 	var/target_pixel_y = 0
 	switch(set_dir)
@@ -46,6 +51,7 @@
 
 /obj/effect/temp_visual/dir_setting/bloodsplatter/xenosplatter
 	splatter_type = "xsplatter"
+	color = null // SKYRAT EDIT ADDITION
 
 /obj/effect/temp_visual/dir_setting/speedbike_trail
 	name = "speedbike trails"

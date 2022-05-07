@@ -292,7 +292,7 @@
 	if(blood)
 		target_types += /obj/effect/decal/cleanable/xenoblood
 		target_types += /obj/effect/decal/cleanable/blood
-		target_types += /obj/effect/decal/cleanable/trail_holder
+		//target_types += /obj/effect/decal/cleanable/trail_holder SKYRAT EDIT REMOVAL
 
 	if(pests)
 		target_types += /mob/living/basic/cockroach

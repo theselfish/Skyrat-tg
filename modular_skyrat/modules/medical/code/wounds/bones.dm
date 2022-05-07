@@ -132,12 +132,12 @@
 				victim.bleed(blood_bled, TRUE)
 			if(14 to 19)
 				victim.visible_message(span_smalldanger("Blood spews out of [victim]'s mouth from the blow to [victim.p_their()] chest!"), span_danger("You spit out a string of blood from the blow to your chest!"), vision_distance=COMBAT_MESSAGE_RANGE)
-				new /obj/effect/temp_visual/dir_setting/bloodsplatter(victim.loc, victim.dir)
+				new /obj/effect/temp_visual/dir_setting/bloodsplatter(victim.loc, victim.dir, victim.dna.blood_type.color)
 				victim.bleed(blood_bled)
 			if(20 to INFINITY)
 				victim.visible_message(span_danger("Blood spurts out of [victim]'s mouth from the blow to [victim.p_their()] chest!"), span_danger("<b>You choke up on a spray of blood from the blow to your chest!</b>"), vision_distance=COMBAT_MESSAGE_RANGE)
 				victim.bleed(blood_bled)
-				new /obj/effect/temp_visual/dir_setting/bloodsplatter(victim.loc, victim.dir)
+				new /obj/effect/temp_visual/dir_setting/bloodsplatter(victim.loc, victim.dir, victim.dna.blood_type.color)
 				victim.add_splatter_floor(get_step(victim.loc, victim.dir))
 
 
@@ -153,7 +153,7 @@
 		// how much life we have left in these bandages
 		switch(limb.current_splint.sling_condition)
 			if(0 to 1.25)
-				sling_condition = "just barely"
+			sling_condition = "just barely"
 			if(1.25 to 2.75)
 				sling_condition = "loosely"
 			if(2.75 to 4)

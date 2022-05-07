@@ -92,7 +92,7 @@
 		update_inv_w_uniform()
 	if(gloves)
 		var/obj/item/clothing/gloves/G = gloves
-		G.add_blood_DNA(blood_dna)
+		gloves.add_blood_DNA(blood_dna) // SKYRAT EDIT CHANGE
 	else if(length(blood_dna))
 		AddComponent(/datum/component/forensics, null, null, blood_dna)
 		blood_in_hands = rand(2, 4)

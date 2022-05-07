@@ -1,3 +1,4 @@
+/* SKYRAT EDIT REMOVAL - MOVED TO MODULAR BLOOD_DECALS.DM
 /obj/effect/decal/cleanable/blood
 	name = "blood"
 	desc = "It's red and gooey. Perhaps it's the chef's cooking?"
@@ -110,6 +111,7 @@
 	reagent_amount = 5
 	///Information about the diseases our streaking spawns
 	var/list/streak_diseases
+*/
 
 /obj/effect/decal/cleanable/blood/gibs/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()

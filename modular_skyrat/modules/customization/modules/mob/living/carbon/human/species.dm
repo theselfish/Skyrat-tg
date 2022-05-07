@@ -27,6 +27,8 @@ GLOBAL_LIST_EMPTY(customizable_races)
 	var/list/custom_worn_icons = list()
 	///Is this species restricted from changing their body_size in character creation?
 	var/body_size_restricted = FALSE
+	///Does our species have colors for its' damage overlays?
+	var/use_damage_color = TRUE
 
 /datum/species/proc/handle_mutant_bodyparts(mob/living/carbon/human/H, forced_colour, force_update = FALSE)
 	var/list/standing	= list()

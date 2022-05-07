@@ -28,9 +28,9 @@
 		//SKYRAT EDIT CHANGE END
 	if(HAS_BLOOD_DNA(src))
 		//SKYRAT EDIT CHANGE BEGIN
-		//. += mutable_appearance('icons/effects/blood.dmi', "[blood_overlay_type]blood") //ORIGINAL
-		var/bloodfile2use = (mutant_styles & STYLE_TAUR_ALL) ? 'modular_skyrat/master_files/icons/mob/64x32_blood.dmi' : 'icons/effects/blood.dmi'
-		. += mutable_appearance(bloodfile2use, "[blood_overlay_type]blood")
+		var/mutable_appearance/bloody_uniform = mutable_appearance('modular_skyrat/modules/better_blood/icons/blood.dmi', "uniformblood")
+		bloody_uniform.color = get_blood_dna_color(return_blood_DNA())
+		. += bloody_uniform
 		//SKYRAT EDIT CHANGE END
 
 	var/mob/living/carbon/human/M = loc

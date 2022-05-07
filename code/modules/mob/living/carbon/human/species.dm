@@ -443,7 +443,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	regenerate_organs(C, old_species, visual_only = C.visual_only_organs)
 
 	if(exotic_bloodtype && C.dna.blood_type != exotic_bloodtype)
-		C.dna.blood_type = exotic_bloodtype
+		C.dna.blood_type = get_blood_type(exotic_bloodtype) // SKYRAT EDIT CHANGE
 
 	if(old_species.mutanthands)
 		for(var/obj/item/I in C.held_items)

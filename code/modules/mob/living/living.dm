@@ -952,7 +952,7 @@
 	if(!has_gravity() || !isturf(start) || !blood_volume)
 		return
 
-	var/blood_exists = locate(/obj/effect/decal/cleanable/trail_holder) in start
+	var/blood_exists = locate(/obj/effect/decal/cleanable/blood/trail_holder) in start // SKYRAT EDIT CHANGE
 
 	var/trail_type = getTrail()
 	if(!trail_type)
@@ -974,9 +974,9 @@
 	if((newdir in GLOB.cardinals) && (prob(50)))
 		newdir = turn(get_dir(target_turf, start), 180)
 	if(!blood_exists)
-		new /obj/effect/decal/cleanable/trail_holder(start, get_static_viruses())
+		new /obj/effect/decal/cleanable/blood/trail_holder(start, get_static_viruses()) // SKYRAT EDIT CHANGE
 
-	for(var/obj/effect/decal/cleanable/trail_holder/TH in start)
+	for(var/obj/effect/decal/cleanable/blood/trail_holder/TH in start) // SKYRAT EDIT CHANGE
 		if((!(newdir in TH.existing_dirs) || trail_type == "trails_1" || trail_type == "trails_2") && TH.existing_dirs.len <= 16) //maximum amount of overlays is 16 (all light & heavy directions filled)
 			TH.existing_dirs += newdir
 			TH.add_overlay(image('icons/effects/blood.dmi', trail_type, dir = newdir))

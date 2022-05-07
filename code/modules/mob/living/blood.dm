@@ -213,7 +213,10 @@
 						if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS))
 							continue
 						C.ForceContractDisease(D)
-				if(!(blood_data["blood_type"] in get_safe_blood(C.dna.blood_type)))
+				// SKYRAT EDIT CHANGE
+				var/datum/blood_type/blood_type = blood_data["blood_type"]
+				if(!blood_type || !(blood_type.type in C.dna.blood_type.compatible_types))
+				// SKYRAT EDIT END
 					C.reagents.add_reagent(/datum/reagent/toxin, amount * 0.5)
 					return TRUE
 
@@ -285,6 +288,7 @@
 		return
 	return /datum/reagent/blood
 
+/* SKYRAT EDIT REMOVAL
 // This is has more potential uses, and is probably faster than the old proc.
 /proc/get_safe_blood(bloodtype)
 	. = list()
@@ -307,7 +311,7 @@
 	var/safe = bloodtypes_safe[bloodtype]
 	if(safe)
 		. = safe
-
+*/
 //to add a splatter of blood or other mob liquid.
 /mob/living/proc/add_splatter_floor(turf/T, small_drip)
 	if(get_blood_id() != /datum/reagent/blood)
