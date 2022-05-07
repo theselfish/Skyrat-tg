@@ -11,5 +11,5 @@
 		if(clothing_flags & LARGE_WORN_ICON)
 			bloody_helmet = mutable_appearance('icons/effects/64x64.dmi', "helmetblood_large")
 		else
-			bloody_helmet = mutable_appearance('modular_skyrat/modules/better_blood/icons/blood.dmi' "helmetblood")
+			bloody_helmet = mutable_appearance('modular_skyrat/modules/better_blood/icons/blood.dmi', "helmetblood")
 		. += bloody_helmet
